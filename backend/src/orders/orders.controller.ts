@@ -12,7 +12,7 @@ export class OrdersController {
   @UseGuards(JwtAuthGuard)
   @Post()
   create(
-    @Request() req,
+    @Request() req: any,
     @Body('items') items: { menuItemId: number; quantity: number }[]
   ) {
     return this.ordersService.create(req.user.id, items);
@@ -20,7 +20,7 @@ export class OrdersController {
 
   @UseGuards(JwtAuthGuard)
   @Get('my-orders')
-  findMyOrders(@Request() req) {
+  findMyOrders(@Request() req: any) {
     return this.ordersService.findUserOrders(req.user.id);
   }
 
